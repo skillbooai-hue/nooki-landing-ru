@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { Menu, X, ChevronDown, Calendar, Users, Bell, Heart, MessageCircle, Shield, Zap, Globe, Award } from "lucide-react";
+import { Menu, X, ChevronDown, Calendar, Users, Bell, Heart, MessageCircle, Zap, Globe, Award } from "lucide-react";
 import WaitlistModal from "@/components/WaitlistModal";
 
 function useScrollAnimation() {
@@ -819,7 +819,7 @@ function DownloadCTA({ onOpenModal }: { onOpenModal: () => void }) {
             Запишитесь в лист ожидания и получите уведомление о запуске русской версии
           </p>
 
-          <div className="flex items-center justify-center mb-10">
+          <div className="flex items-center justify-center">
             <button
               onClick={onOpenModal}
               className="px-10 py-4 bg-white text-blue-600 rounded-2xl hover:bg-blue-50 transition-colors font-bold text-base shadow-lg"
@@ -828,21 +828,6 @@ function DownloadCTA({ onOpenModal }: { onOpenModal: () => void }) {
               Вступить в Waitlist
             </button>
           </div>
-
-          <div className="flex flex-wrap items-center justify-center gap-6 text-blue-100 text-sm">
-            <div className="flex items-center gap-2">
-              <Shield className="w-4 h-4" />
-              <span>Бесплатно навсегда</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Shield className="w-4 h-4" />
-              <span>Без рекламы</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Shield className="w-4 h-4" />
-              <span>Ваши данные защищены</span>
-            </div>
-          </div>
         </AnimatedSection>
       </div>
     </section>
@@ -850,59 +835,40 @@ function DownloadCTA({ onOpenModal }: { onOpenModal: () => void }) {
 }
 
 function Footer() {
-  const links = {
-    "Приложение": ["Возможности", "Тарифы"],
-    "Поддержка": ["Политика конфиденциальности", "Связаться с нами"],
-  };
+  const navLinks = [
+    { label: "Возможности", testid: "link-footer-возможности" },
+    { label: "Тарифы", testid: "link-footer-тарифы" },
+    { label: "Конфиденциальность", testid: "link-footer-конфиденциальность" },
+  ];
 
   return (
-    <footer className="bg-gray-900 text-gray-400" data-testid="footer">
-      <div className="max-w-6xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-12">
-          <div className="col-span-2 md:col-span-1">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-xl bg-blue-600 flex items-center justify-center">
-                <Calendar className="w-4 h-4 text-white" />
-              </div>
-              <span className="text-lg font-bold text-white">Nooki</span>
+    <footer className="bg-gray-900" data-testid="footer">
+      <div className="max-w-5xl mx-auto px-6 py-10">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex items-center gap-2">
+            <div className="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center">
+              <Calendar className="w-3.5 h-3.5 text-white" />
             </div>
-            <p className="text-sm text-gray-500 leading-relaxed mb-4">
-              Совместный календарь для семей, пар и команд. Планируйте жизнь вместе.
-            </p>
-            <div className="flex gap-3">
-              <a href="#" className="w-8 h-8 rounded-lg bg-gray-800 flex items-center justify-center hover:bg-blue-600 transition-colors" data-testid="link-social-twitter">
-                <span className="text-xs font-bold text-white">X</span>
-              </a>
-              <a href="#" className="w-8 h-8 rounded-lg bg-gray-800 flex items-center justify-center hover:bg-blue-600 transition-colors" data-testid="link-social-instagram">
-                <span className="text-xs font-bold text-white">In</span>
-              </a>
-              <a href="#" className="w-8 h-8 rounded-lg bg-gray-800 flex items-center justify-center hover:bg-blue-600 transition-colors" data-testid="link-social-fb">
-                <span className="text-xs font-bold text-white">FB</span>
-              </a>
-            </div>
+            <span className="text-base font-bold text-white">Nooki</span>
           </div>
 
-          {Object.entries(links).map(([section, items]) => (
-            <div key={section}>
-              <h4 className="text-xs font-semibold text-white uppercase tracking-widest mb-4">{section}</h4>
-              <ul className="space-y-2.5">
-                {items.map(item => (
-                  <li key={item}>
-                    <a href="#" className="text-sm text-gray-500 hover:text-white transition-colors" data-testid={`link-footer-${item.toLowerCase().replace(/\s+/g, "-")}`}>{item}</a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          <nav className="flex items-center gap-6" data-testid="footer-nav">
+            {navLinks.map(link => (
+              <a
+                key={link.label}
+                href="#"
+                className="text-sm text-gray-500 hover:text-white transition-colors"
+                data-testid={link.testid}
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
         </div>
 
-        <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-gray-600">© 2026 Nooki. Все права защищены.</p>
-          <div className="flex items-center gap-4 text-sm text-gray-600">
-            <span>Language: English (Russian version coming soon)</span>
-            <span>•</span>
-            <span>Сделано с ❤️ для вас</span>
-          </div>
+        <div className="border-t border-gray-800 mt-8 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-xs text-gray-600">© 2026 Nooki. Все права защищены.</p>
+          <p className="text-xs text-gray-600">Language: English (Russian version coming soon)</p>
         </div>
       </div>
     </footer>
