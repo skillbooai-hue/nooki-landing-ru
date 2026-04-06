@@ -119,12 +119,12 @@ function HeroSection({ onOpenModal }: { onOpenModal: () => void }) {
 
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
         <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-gray-900 leading-tight tracking-tight mb-6">
-          Живите вместе,<br />
-          <span className="text-blue-600">планируйте вместе</span>
+          Японское искусство порядка<br />
+          <span className="text-blue-600">в твоём смартфоне</span>
         </h1>
 
         <p className="text-xl md:text-2xl text-gray-500 max-w-2xl mx-auto mb-10 leading-relaxed">
-          Nooki — совместный календарь для пар, семей и команд. Делитесь расписанием, общайтесь и не пропускайте ни одного важного момента.
+          Мы взяли за основу самый успешный календарь Японии и наделили его мощным ИИ, чтобы помочь вам навести идеальный порядок в делах, семье и жизни.
         </p>
 
         <p className="text-sm text-gray-400 mb-8 italic">
@@ -427,6 +427,61 @@ function ShareSection() {
   );
 }
 
+function JapanPhilosophySection() {
+  const pillars = [
+    {
+      icon: "⛩️",
+      title: "Качество и точность",
+      text: "В Японии порядок — это искусство. Nooki вобрал в себя лучшие практики планирования, проверенные миллионами.",
+    },
+    {
+      icon: "🎋",
+      title: "Минимализм",
+      text: "Ничего лишнего. Только вы, ваши близкие и идеальный график без информационного шума.",
+    },
+    {
+      icon: "🤖",
+      title: "ИИ с человеческим лицом",
+      text: "Мы объединили японскую дисциплину и современные технологии ИИ, чтобы планирование стало естественным, как дыхание.",
+    },
+  ];
+
+  return (
+    <section className="py-24 bg-white" data-testid="section-japan-philosophy">
+      <div className="max-w-5xl mx-auto px-6">
+        <AnimatedSection className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100 mb-4">
+            <Globe className="w-3.5 h-3.5 text-blue-600" />
+            <span className="text-xs font-medium text-blue-700">Философия Nooki</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
+            Японский подход<br />к планированию
+          </h2>
+          <p className="text-xl text-gray-500 max-w-xl mx-auto">
+            Тысячелетняя культура порядка, переосмысленная для современного мира
+          </p>
+        </AnimatedSection>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {pillars.map((p, i) => (
+            <AnimatedSection key={i} delay={i * 100}>
+              <div
+                className="group relative bg-gradient-to-b from-blue-50 to-white rounded-3xl p-8 border border-blue-100 hover:shadow-xl hover:border-blue-200 transition-all duration-300 text-center"
+                data-testid={`card-philosophy-${i}`}
+              >
+                <div className="text-5xl mb-5">{p.icon}</div>
+                <h3 className="text-lg font-extrabold text-gray-900 mb-3">{p.title}</h3>
+                <p className="text-sm text-gray-500 leading-relaxed">{p.text}</p>
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-12 h-0.5 bg-blue-300 rounded-full mb-0 group-hover:w-20 transition-all duration-300" />
+              </div>
+            </AnimatedSection>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function HowItWorksSection() {
   const steps = [
     {
@@ -460,7 +515,7 @@ function HowItWorksSection() {
             <span className="text-xs font-medium text-blue-700">Как это работает</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">Начните за 4 простых шага</h2>
-          <p className="text-xl text-gray-500 max-w-xl mx-auto">Nooki работает без сложной настройки — просто скачайте и начните</p>
+          <p className="text-xl text-gray-500 max-w-xl mx-auto">Путь к порядку начинается здесь. Опыт Японии, адаптированный специально для русскоязычных пользователей.</p>
         </AnimatedSection>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
@@ -864,6 +919,7 @@ export default function LandingPage() {
       <Navbar onOpenModal={openModal} />
       <HeroSection onOpenModal={openModal} />
       <FeaturesSection />
+      <JapanPhilosophySection />
       <ShareSection />
       <HowItWorksSection />
       <ChatSection />

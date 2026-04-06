@@ -99,10 +99,10 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
 
                 {/* Heading */}
                 <h2 className="text-2xl font-extrabold text-gray-900 mb-2 leading-tight" data-testid="modal-title">
-                  Станьте первым пользователем Nooki
+                  Прикоснитесь к японскому качеству планирования
                 </h2>
                 <p className="text-gray-500 text-sm mb-6 leading-relaxed" data-testid="modal-subtitle">
-                  Оставьте свой email, чтобы первым узнать о выходе русской версии Nooki и получить ранний доступ.
+                  Мы финализируем русскую версию Nooki. Оставьте свой Email, чтобы получить приглашение в закрытую бету и первыми внедрить японский порядок в свою жизнь.
                 </p>
 
                 {/* Form */}
