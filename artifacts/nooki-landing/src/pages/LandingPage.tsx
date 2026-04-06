@@ -127,6 +127,10 @@ function HeroSection({ onOpenModal }: { onOpenModal: () => void }) {
           Nooki — совместный календарь для пар, семей и команд. Делитесь расписанием, общайтесь и не пропускайте ни одного важного момента.
         </p>
 
+        <p className="text-sm text-gray-400 mb-8 italic">
+          Японские традиции минимализма. Скоро на русском языке.
+        </p>
+
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16" id="download" data-testid="hero-download-buttons">
           <button
             onClick={onOpenModal}
@@ -928,7 +932,7 @@ function Footer() {
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-gray-600">© 2026 Nooki. Все права защищены.</p>
           <div className="flex items-center gap-4 text-sm text-gray-600">
-            <span>Язык: Русский</span>
+            <span>Language: English (Russian version coming soon)</span>
             <span>•</span>
             <span>Сделано с ❤️ для вас</span>
           </div>

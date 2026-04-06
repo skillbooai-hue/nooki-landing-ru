@@ -102,7 +102,7 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
                   Станьте первым пользователем Nooki
                 </h2>
                 <p className="text-gray-500 text-sm mb-6 leading-relaxed" data-testid="modal-subtitle">
-                  Оставьте свой email, и мы пригласим вас в закрытую бету
+                  Оставьте свой email, чтобы первым узнать о выходе русской версии Nooki и получить ранний доступ.
                 </p>
 
                 {/* Form */}
