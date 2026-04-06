@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import { SiAppstore, SiGoogleplay } from "react-icons/si";
 import { Menu, X, ChevronDown, Calendar, Users, Bell, Heart, Star, MessageCircle, Shield, Zap, Globe, Award } from "lucide-react";
 
 function useScrollAnimation() {
@@ -71,18 +70,12 @@ function Navbar() {
 
         <div className="hidden md:flex items-center gap-3" data-testid="nav-cta">
           <a
-            href="#download"
-            className="px-4 py-2 text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors"
-            data-testid="link-download-nav"
-          >
-            Скачать
-          </a>
-          <a
-            href="#download"
+            href="#waitlist"
+            onClick={e => { e.preventDefault(); document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" }); }}
             className="px-5 py-2 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-full transition-colors"
             data-testid="button-cta-nav"
           >
-            Начать бесплатно
+            Вступить в Waitlist
           </a>
         </div>
 
@@ -102,12 +95,12 @@ function Navbar() {
           <a href="#reviews" className="text-sm text-gray-700" onClick={() => setMenuOpen(false)} data-testid="link-reviews-mobile">Отзывы</a>
           <a href="#faq" className="text-sm text-gray-700" onClick={() => setMenuOpen(false)} data-testid="link-faq-mobile">FAQ</a>
           <a
-            href="#download"
+            href="#waitlist"
             className="px-5 py-2.5 text-sm font-semibold text-white bg-blue-600 rounded-full text-center"
-            onClick={() => setMenuOpen(false)}
+            onClick={e => { e.preventDefault(); setMenuOpen(false); document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" }); }}
             data-testid="button-cta-mobile"
           >
-            Скачать Nooki
+            Вступить в Waitlist
           </a>
         </div>
       )}
@@ -126,11 +119,6 @@ function HeroSection() {
       </div>
 
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100 mb-6">
-          <Star className="w-3.5 h-3.5 text-blue-600 fill-blue-600" />
-          <span className="text-xs font-medium text-blue-700">Более 20 миллионов пользователей по всему миру</span>
-        </div>
-
         <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-gray-900 leading-tight tracking-tight mb-6">
           Живите вместе,<br />
           <span className="text-blue-600">планируйте вместе</span>
@@ -142,27 +130,14 @@ function HeroSection() {
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16" id="download" data-testid="hero-download-buttons">
           <a
-            href="#"
-            className="flex items-center gap-3 px-6 py-3.5 bg-gray-900 text-white rounded-2xl hover:bg-gray-800 transition-colors w-full sm:w-auto justify-center"
-            data-testid="button-appstore-hero"
+            href="#waitlist"
+            onClick={e => { e.preventDefault(); document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" }); }}
+            className="px-8 py-4 bg-blue-600 text-white rounded-2xl hover:bg-blue-700 transition-colors font-semibold text-base shadow-lg"
+            data-testid="button-waitlist-hero"
           >
-            <SiAppstore className="w-6 h-6" />
-            <div className="text-left">
-              <div className="text-xs opacity-70">Загрузить в</div>
-              <div className="text-sm font-semibold">App Store</div>
-            </div>
+            Вступить в Waitlist
           </a>
-          <a
-            href="#"
-            className="flex items-center gap-3 px-6 py-3.5 bg-gray-900 text-white rounded-2xl hover:bg-gray-800 transition-colors w-full sm:w-auto justify-center"
-            data-testid="button-googleplay-hero"
-          >
-            <SiGoogleplay className="w-6 h-6" />
-            <div className="text-left">
-              <div className="text-xs opacity-70">Доступно в</div>
-              <div className="text-sm font-semibold">Google Play</div>
-            </div>
-          </a>
+          <span className="text-sm text-gray-400">Бесплатно · Без кредитной карты</span>
         </div>
 
         {/* Phone mockup */}
@@ -290,50 +265,12 @@ function HeroSection() {
             </div>
           </div>
 
-          {/* Store ratings */}
-          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-6 text-sm text-gray-500">
-            <div className="flex items-center gap-2">
-              <div className="flex text-yellow-400">
-                {"★★★★★".split("").map((s, i) => <span key={i}>{s}</span>)}
-              </div>
-              <span className="text-gray-700 font-medium">4.9</span>
-              <span>App Store</span>
-            </div>
-            <div className="w-px h-4 bg-gray-200 hidden sm:block" />
-            <div className="flex items-center gap-2">
-              <div className="flex text-yellow-400">
-                {"★★★★★".split("").map((s, i) => <span key={i}>{s}</span>)}
-              </div>
-              <span className="text-gray-700 font-medium">4.8</span>
-              <span>Google Play</span>
-            </div>
-            <div className="w-px h-4 bg-gray-200 hidden sm:block" />
-            <div className="flex items-center gap-2">
-              <Users className="w-4 h-4 text-blue-500" />
-              <span>20М+ пользователей</span>
-            </div>
-          </div>
         </div>
       </div>
     </section>
   );
 }
 
-function LogoBar() {
-  const logos = ["Forbes", "TechCrunch", "Wired", "The Verge", "Product Hunt"];
-  return (
-    <section className="py-12 bg-gray-50 border-y border-gray-100" data-testid="section-press">
-      <div className="max-w-5xl mx-auto px-6">
-        <p className="text-center text-xs text-gray-400 uppercase tracking-widest font-medium mb-8">О нас пишут</p>
-        <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-16">
-          {logos.map(logo => (
-            <span key={logo} className="text-lg font-bold text-gray-300 hover:text-gray-400 transition-colors cursor-default">{logo}</span>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
 
 function FeaturesSection() {
   const features = [
@@ -634,31 +571,6 @@ function ChatSection() {
   );
 }
 
-function StatsSection() {
-  const stats = [
-    { value: "20М+", label: "Пользователей по всему миру" },
-    { value: "190+", label: "Стран и регионов" },
-    { value: "4.9", label: "Рейтинг в App Store" },
-    { value: "100М+", label: "Событий создано" },
-  ];
-
-  return (
-    <section className="py-20 bg-blue-600" data-testid="section-stats">
-      <div className="max-w-5xl mx-auto px-6">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-          {stats.map((s, i) => (
-            <AnimatedSection key={s.label} delay={i * 100}>
-              <div className="text-center" data-testid={`stat-${i}`}>
-                <div className="text-4xl md:text-5xl font-extrabold text-white mb-2">{s.value}</div>
-                <div className="text-sm text-blue-200">{s.label}</div>
-              </div>
-            </AnimatedSection>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
 
 function ReviewsSection() {
   const reviews = [
@@ -720,8 +632,8 @@ function ReviewsSection() {
             <Star className="w-3.5 h-3.5 text-blue-600 fill-blue-600" />
             <span className="text-xs font-medium text-blue-700">Отзывы пользователей</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">Нам доверяют миллионы</h2>
-          <p className="text-xl text-gray-500 max-w-xl mx-auto">Реальные отзывы пользователей Nooki со всего мира</p>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">Что говорят наши первые пользователи</h2>
+          <p className="text-xl text-gray-500 max-w-xl mx-auto">Мнения людей из нашего раннего сообщества</p>
         </AnimatedSection>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -749,52 +661,36 @@ function ReviewsSection() {
 function PlansSection() {
   const plans = [
     {
-      name: "Бесплатно",
+      name: "Basic",
       price: "0₽",
       period: "/месяц",
       desc: "Для личного использования",
       features: [
-        "До 2 совместных календарей",
-        "До 5 участников",
+        "15 ИИ-событий в неделю",
+        "До 3 Пространств",
+        "Интеграция с Google Calendar",
         "Базовые напоминания",
         "Встроенный чат",
-        "Синхронизация на 2 устройствах",
       ],
-      cta: "Начать бесплатно",
+      cta: "Вступить в Waitlist",
       highlight: false,
     },
     {
-      name: "Семейный",
-      price: "299₽",
+      name: "Premium",
+      price: "499₽",
       period: "/месяц",
-      desc: "Для семей и пар",
+      desc: "Для активных пользователей",
       features: [
-        "Неограниченные календари",
-        "До 10 участников",
+        "150 ИИ-событий в месяц",
+        "До 10 Пространств",
+        "Приоритетная поддержка",
         "Умные напоминания",
         "Чат с фото и видео",
         "Синхронизация на всех устройствах",
-        "Праздники всех стран",
         "Повторяющиеся события",
       ],
-      cta: "Попробовать 30 дней бесплатно",
+      cta: "Вступить в Waitlist",
       highlight: true,
-    },
-    {
-      name: "Командный",
-      price: "699₽",
-      period: "/месяц",
-      desc: "Для команд и организаций",
-      features: [
-        "Всё из Семейного плана",
-        "Неограниченное число участников",
-        "Управление ролями",
-        "Интеграции с внешними сервисами",
-        "Приоритетная поддержка",
-        "Аналитика использования",
-      ],
-      cta: "Начать бесплатно",
-      highlight: false,
     },
   ];
 
@@ -810,7 +706,7 @@ function PlansSection() {
           <p className="text-xl text-gray-500 max-w-xl mx-auto">Начните бесплатно — улучшайте по мере необходимости</p>
         </AnimatedSection>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start max-w-3xl mx-auto">
           {plans.map((plan, i) => (
             <AnimatedSection key={plan.name} delay={i * 100}>
               <div
@@ -847,6 +743,7 @@ function PlansSection() {
                 </ul>
 
                 <button
+                  onClick={() => document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" })}
                   className={`w-full py-3 rounded-xl text-sm font-semibold transition-all ${
                     plan.highlight
                       ? "bg-white text-blue-600 hover:bg-blue-50"
@@ -871,7 +768,7 @@ function FaqSection() {
   const faqs = [
     {
       q: "Nooki бесплатный?",
-      a: "Да, базовая версия Nooki полностью бесплатна. Вы можете создавать совместные календари, приглашать участников и пользоваться чатом без каких-либо ограничений. Премиум-функции доступны по подписке.",
+      a: "Да, базовый план Nooki бесплатен. Он включает 15 ИИ-событий в неделю и до 3 Пространств. Для тех, кому нужно больше, доступен план Premium с 150 ИИ-событиями в месяц и расширенными функциями.",
     },
     {
       q: "Как пригласить членов семьи?",
@@ -888,10 +785,6 @@ function FaqSection() {
     {
       q: "Мои данные в безопасности?",
       a: "Безопасность ваших данных — наш главный приоритет. Все данные зашифрованы при передаче и хранении. Мы никогда не передаём вашу личную информацию третьим лицам.",
-    },
-    {
-      q: "Как отменить подписку?",
-      a: "Вы можете отменить подписку в любой момент в разделе «Управление подпиской» в настройках приложения. Ваш доступ к премиум-функциям сохранится до конца оплаченного периода.",
     },
   ];
 
@@ -936,7 +829,7 @@ function FaqSection() {
 
 function DownloadCTA() {
   return (
-    <section className="py-24 bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 relative overflow-hidden" data-testid="section-download-cta">
+    <section id="waitlist" className="py-24 bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 relative overflow-hidden" data-testid="section-download-cta">
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 left-0 w-full h-full" style={{
           backgroundImage: "radial-gradient(circle at 20% 50%, white 1px, transparent 1px), radial-gradient(circle at 80% 20%, white 1px, transparent 1px)",
@@ -952,32 +845,17 @@ function DownloadCTA() {
             Начните планировать<br />вместе прямо сейчас
           </h2>
           <p className="text-xl text-blue-100 mb-10 max-w-xl mx-auto">
-            Скачайте Nooki бесплатно и объедините расписания всей семьи за несколько минут
+            Присоединяйтесь к waitlist и получите ранний доступ к Nooki бесплатно
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
-            <a
-              href="#"
-              className="flex items-center gap-3 px-6 py-4 bg-white text-gray-900 rounded-2xl hover:bg-gray-100 transition-colors w-full sm:w-auto justify-center shadow-lg"
-              data-testid="button-appstore-cta"
+          <div className="flex items-center justify-center mb-10">
+            <button
+              onClick={() => document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" })}
+              className="px-10 py-4 bg-white text-blue-600 rounded-2xl hover:bg-blue-50 transition-colors font-bold text-base shadow-lg"
+              data-testid="button-waitlist-cta"
             >
-              <SiAppstore className="w-7 h-7" />
-              <div className="text-left">
-                <div className="text-xs text-gray-500">Загрузить в</div>
-                <div className="text-sm font-bold">App Store</div>
-              </div>
-            </a>
-            <a
-              href="#"
-              className="flex items-center gap-3 px-6 py-4 bg-white text-gray-900 rounded-2xl hover:bg-gray-100 transition-colors w-full sm:w-auto justify-center shadow-lg"
-              data-testid="button-googleplay-cta"
-            >
-              <SiGoogleplay className="w-7 h-7" />
-              <div className="text-left">
-                <div className="text-xs text-gray-500">Доступно в</div>
-                <div className="text-sm font-bold">Google Play</div>
-              </div>
-            </a>
+              Вступить в Waitlist
+            </button>
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-6 text-blue-100 text-sm">
@@ -1067,12 +945,10 @@ export default function LandingPage() {
     <div className="min-h-screen" data-testid="landing-page">
       <Navbar />
       <HeroSection />
-      <LogoBar />
       <FeaturesSection />
       <ShareSection />
       <HowItWorksSection />
       <ChatSection />
-      <StatsSection />
       <ReviewsSection />
       <PlansSection />
       <FaqSection />
