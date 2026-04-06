@@ -102,7 +102,7 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
                   Прикоснитесь к японскому качеству планирования
                 </h2>
                 <p className="text-gray-500 text-sm mb-6 leading-relaxed" data-testid="modal-subtitle">
-                  Мы финализируем русскую версию Nooki. Оставьте свой Email, чтобы получить приглашение в закрытую бету и первыми внедрить японский порядок в свою жизнь.
+                  Оставьте email, чтобы получить ранний доступ к Nooki на русском языке.
                 </p>
 
                 {/* Form */}
@@ -113,7 +113,7 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
                   data-testid="form-waitlist"
                 >
                   <input type="hidden" name="form-name" value="waitlist" />
-                  <input type="hidden" name="source" value="promo_popup" />
+                  <input type="hidden" name="source" value="ru_promo" />
 
                   <div className="mb-4">
                     <label htmlFor="waitlist-email" className="block text-xs font-semibold text-gray-600 mb-1.5 uppercase tracking-wide">
