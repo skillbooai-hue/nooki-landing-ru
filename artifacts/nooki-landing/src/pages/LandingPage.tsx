@@ -1,5 +1,6 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Menu, X, ChevronDown, Calendar, Users, Bell, Heart, Star, MessageCircle, Shield, Zap, Globe, Award } from "lucide-react";
+import WaitlistModal from "@/components/WaitlistModal";
 
 function useScrollAnimation() {
   const ref = useRef<HTMLDivElement>(null);
@@ -36,7 +37,7 @@ function AnimatedSection({ children, className = "", delay = 0 }: { children: Re
   );
 }
 
-function Navbar() {
+function Navbar({ onOpenModal }: { onOpenModal: () => void }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -69,14 +70,13 @@ function Navbar() {
         </nav>
 
         <div className="hidden md:flex items-center gap-3" data-testid="nav-cta">
-          <a
-            href="#waitlist"
-            onClick={e => { e.preventDefault(); document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" }); }}
+          <button
+            onClick={onOpenModal}
             className="px-5 py-2 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-full transition-colors"
             data-testid="button-cta-nav"
           >
             Вступить в Waitlist
-          </a>
+          </button>
         </div>
 
         <button
@@ -94,21 +94,20 @@ function Navbar() {
           <a href="#how-it-works" className="text-sm text-gray-700" onClick={() => setMenuOpen(false)} data-testid="link-how-mobile">Как это работает</a>
           <a href="#reviews" className="text-sm text-gray-700" onClick={() => setMenuOpen(false)} data-testid="link-reviews-mobile">Отзывы</a>
           <a href="#faq" className="text-sm text-gray-700" onClick={() => setMenuOpen(false)} data-testid="link-faq-mobile">FAQ</a>
-          <a
-            href="#waitlist"
+          <button
             className="px-5 py-2.5 text-sm font-semibold text-white bg-blue-600 rounded-full text-center"
-            onClick={e => { e.preventDefault(); setMenuOpen(false); document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" }); }}
+            onClick={() => { setMenuOpen(false); onOpenModal(); }}
             data-testid="button-cta-mobile"
           >
             Вступить в Waitlist
-          </a>
+          </button>
         </div>
       )}
     </header>
   );
 }
 
-function HeroSection() {
+function HeroSection({ onOpenModal }: { onOpenModal: () => void }) {
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center pt-20 pb-16 overflow-hidden bg-white" data-testid="section-hero">
       {/* Background gradient blobs */}
@@ -129,14 +128,13 @@ function HeroSection() {
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16" id="download" data-testid="hero-download-buttons">
-          <a
-            href="#waitlist"
-            onClick={e => { e.preventDefault(); document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" }); }}
+          <button
+            onClick={onOpenModal}
             className="px-8 py-4 bg-blue-600 text-white rounded-2xl hover:bg-blue-700 transition-colors font-semibold text-base shadow-lg"
             data-testid="button-waitlist-hero"
           >
             Вступить в Waitlist
-          </a>
+          </button>
           <span className="text-sm text-gray-400">Бесплатно · Без кредитной карты</span>
         </div>
 
@@ -658,7 +656,7 @@ function ReviewsSection() {
   );
 }
 
-function PlansSection() {
+function PlansSection({ onOpenModal }: { onOpenModal: () => void }) {
   const plans = [
     {
       name: "Basic",
@@ -743,7 +741,7 @@ function PlansSection() {
                 </ul>
 
                 <button
-                  onClick={() => document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" })}
+                  onClick={onOpenModal}
                   className={`w-full py-3 rounded-xl text-sm font-semibold transition-all ${
                     plan.highlight
                       ? "bg-white text-blue-600 hover:bg-blue-50"
@@ -827,7 +825,7 @@ function FaqSection() {
   );
 }
 
-function DownloadCTA() {
+function DownloadCTA({ onOpenModal }: { onOpenModal: () => void }) {
   return (
     <section id="waitlist" className="py-24 bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 relative overflow-hidden" data-testid="section-download-cta">
       <div className="absolute inset-0 opacity-10">
@@ -850,7 +848,7 @@ function DownloadCTA() {
 
           <div className="flex items-center justify-center mb-10">
             <button
-              onClick={() => document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" })}
+              onClick={onOpenModal}
               className="px-10 py-4 bg-white text-blue-600 rounded-2xl hover:bg-blue-50 transition-colors font-bold text-base shadow-lg"
               data-testid="button-waitlist-cta"
             >
@@ -941,19 +939,24 @@ function Footer() {
 }
 
 export default function LandingPage() {
+  const [modalOpen, setModalOpen] = useState(false);
+  const openModal = useCallback(() => setModalOpen(true), []);
+  const closeModal = useCallback(() => setModalOpen(false), []);
+
   return (
     <div className="min-h-screen" data-testid="landing-page">
-      <Navbar />
-      <HeroSection />
+      <Navbar onOpenModal={openModal} />
+      <HeroSection onOpenModal={openModal} />
       <FeaturesSection />
       <ShareSection />
       <HowItWorksSection />
       <ChatSection />
       <ReviewsSection />
-      <PlansSection />
+      <PlansSection onOpenModal={openModal} />
       <FaqSection />
-      <DownloadCTA />
+      <DownloadCTA onOpenModal={openModal} />
       <Footer />
+      <WaitlistModal isOpen={modalOpen} onClose={closeModal} />
     </div>
   );
 }
