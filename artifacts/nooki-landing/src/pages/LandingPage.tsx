@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { Menu, X, ChevronDown, Calendar, Users, Bell, Heart, Star, MessageCircle, Shield, Zap, Globe, Award } from "lucide-react";
+import { Menu, X, ChevronDown, Calendar, Users, Bell, Heart, MessageCircle, Shield, Zap, Globe, Award } from "lucide-react";
 import WaitlistModal from "@/components/WaitlistModal";
 
 function useScrollAnimation() {
@@ -574,92 +574,6 @@ function ChatSection() {
 }
 
 
-function ReviewsSection() {
-  const reviews = [
-    {
-      name: "Мария К.",
-      role: "Мама двоих детей",
-      rating: 5,
-      text: "Nooki изменил нашу семейную жизнь. Теперь мы всегда знаем расписание друг друга и не путаемся. Очень удобно!",
-      avatar: "М",
-      color: "bg-pink-500",
-    },
-    {
-      name: "Алексей В.",
-      role: "Менеджер проекта",
-      rating: 5,
-      text: "Использую для рабочей команды уже 2 года. Прекрасное решение для синхронизации встреч и дедлайнов. Рекомендую!",
-      avatar: "А",
-      color: "bg-blue-600",
-    },
-    {
-      name: "Екатерина Л.",
-      role: "Молодая пара",
-      rating: 5,
-      text: "Мы с мужем не расстаёмся с Nooki. Теперь забыть о годовщине просто невозможно — приложение напомнит!",
-      avatar: "Е",
-      color: "bg-purple-500",
-    },
-    {
-      name: "Дмитрий С.",
-      role: "Руководитель отдела",
-      rating: 5,
-      text: "Лучшее приложение для совместного планирования. Интерфейс интуитивный, работает без сбоев. Все в команде довольны.",
-      avatar: "Д",
-      color: "bg-green-500",
-    },
-    {
-      name: "Наталья П.",
-      role: "Многодетная мама",
-      rating: 5,
-      text: "С тремя детьми без Nooki было бы хаос. Теперь у каждого свой цвет в календаре, и сразу видно чья очередь что делать.",
-      avatar: "Н",
-      color: "bg-orange-500",
-    },
-    {
-      name: "Игорь М.",
-      role: "Фрилансер",
-      rating: 5,
-      text: "Совмещаю несколько проектов и использую разные календари в Nooki. Никогда не путаюсь с дедлайнами!",
-      avatar: "И",
-      color: "bg-teal-500",
-    },
-  ];
-
-  return (
-    <section id="reviews" className="py-24 bg-gray-50" data-testid="section-reviews">
-      <div className="max-w-5xl mx-auto px-6">
-        <AnimatedSection className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100 mb-4">
-            <Star className="w-3.5 h-3.5 text-blue-600 fill-blue-600" />
-            <span className="text-xs font-medium text-blue-700">Отзывы пользователей</span>
-          </div>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">Что говорят наши первые пользователи</h2>
-          <p className="text-xl text-gray-500 max-w-xl mx-auto">Мнения людей из нашего раннего сообщества</p>
-        </AnimatedSection>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {reviews.map((r, i) => (
-            <AnimatedSection key={r.name} delay={i * 80}>
-              <div className="bg-white rounded-2xl p-6 border border-gray-100 hover:shadow-lg transition-shadow duration-300 h-full" data-testid={`card-review-${i}`}>
-                <div className="flex items-center gap-3 mb-4">
-                  <div className={`w-10 h-10 rounded-full ${r.color} flex items-center justify-center text-sm font-bold text-white flex-shrink-0`}>{r.avatar}</div>
-                  <div>
-                    <div className="text-sm font-semibold text-gray-900">{r.name}</div>
-                    <div className="text-xs text-gray-400">{r.role}</div>
-                  </div>
-                  <div className="ml-auto flex text-yellow-400 text-sm">{"★".repeat(r.rating)}</div>
-                </div>
-                <p className="text-sm text-gray-600 leading-relaxed">{r.text}</p>
-              </div>
-            </AnimatedSection>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function PlansSection({ onOpenModal }: { onOpenModal: () => void }) {
   const plans = [
     {
@@ -844,10 +758,10 @@ function DownloadCTA({ onOpenModal }: { onOpenModal: () => void }) {
             <span className="text-xs font-medium text-white">Доступно бесплатно</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-6">
-            Начните планировать<br />вместе прямо сейчас
+            Станьте одним из первых<br />пользователей Nooki
           </h2>
           <p className="text-xl text-blue-100 mb-10 max-w-xl mx-auto">
-            Присоединяйтесь к waitlist и получите ранний доступ к Nooki бесплатно
+            Запишитесь в лист ожидания и получите уведомление о запуске русской версии
           </p>
 
           <div className="flex items-center justify-center mb-10">
@@ -882,10 +796,8 @@ function DownloadCTA({ onOpenModal }: { onOpenModal: () => void }) {
 
 function Footer() {
   const links = {
-    "Приложение": ["Возможности", "Как это работает", "Тарифы", "Скачать"],
-    "Компания": ["О нас", "Блог", "Карьера", "Пресс-кит"],
-    "Поддержка": ["Справочный центр", "Связаться с нами", "Статус сервиса", "Сообщить о проблеме"],
-    "Правовые": ["Политика конфиденциальности", "Условия использования", "Cookie"],
+    "Приложение": ["Возможности", "Тарифы"],
+    "Поддержка": ["Политика конфиденциальности", "Связаться с нами"],
   };
 
   return (
@@ -955,7 +867,6 @@ export default function LandingPage() {
       <ShareSection />
       <HowItWorksSection />
       <ChatSection />
-      <ReviewsSection />
       <PlansSection onOpenModal={openModal} />
       <FaqSection />
       <DownloadCTA onOpenModal={openModal} />
