@@ -1,0 +1,6 @@
+[build]
+  command = "pnpm --filter @workspace/nooki-landing run build"
+  publish = "artifacts/nooki-landing/dist/public"
+
+[build.environment]
+  NODE_VERSION = "20"
