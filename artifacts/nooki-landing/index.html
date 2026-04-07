@@ -34,6 +34,18 @@
     </script>
     <noscript><div><img src="https://mc.yandex.ru/watch/108417493" style="position:absolute;left:-9999px;" alt="" /></div></noscript>
     <!-- /Yandex.Metrika counter -->
+    <!--
+      Netlify form detection fallback.
+      The real form lives inside the React modal (WaitlistModal.tsx),
+      but Netlify's crawler only reads static HTML at build time.
+      This hidden form registers the form name and field list with Netlify.
+    -->
+    <form name="waitlist" data-netlify="true" hidden>
+      <input type="hidden" name="form-name" value="waitlist" />
+      <input type="email" name="email" />
+      <input type="hidden" name="source" />
+    </form>
+
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
