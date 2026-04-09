@@ -8,6 +8,7 @@ import LandingPage from "@/pages/LandingPage";
 const queryClient = new QueryClient();
 
 function Router() {
+  // force update russian
   return (
     <Switch>
       <Route path="/" component={LandingPage} />
