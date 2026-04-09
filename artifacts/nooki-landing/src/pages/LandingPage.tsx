@@ -868,7 +868,7 @@ function Footer() {
 
         <div className="border-t border-gray-800 mt-8 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs text-gray-600">© 2026 Nooki. Все права защищены.</p>
-          <p className="text-xs text-gray-600">Language: English (Russian version coming soon)</p>
+          <p className="text-xs text-gray-600">Версия на русском языке</p>
         </div>
       </div>
     </footer>
