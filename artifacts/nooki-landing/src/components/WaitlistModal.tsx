@@ -34,10 +34,23 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
     e.preventDefault();
     if (!email.trim()) return;
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setSubmitted(true);
-    }, 900);
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({
+        "form-name": "waitlist",
+        email: email.trim(),
+        source: "ru_promo",
+      }).toString(),
+    })
+      .then(() => {
+        setLoading(false);
+        setSubmitted(true);
+      })
+      .catch(() => {
+        setLoading(false);
+        setSubmitted(true);
+      });
   }
 
   function handleClose() {
